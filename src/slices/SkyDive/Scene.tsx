@@ -54,7 +54,7 @@ export default function Scene({ sentence, flavor }: SkyDiveProps) {
 
     gsap.set(
       wordsRef.current.children.map((word) => word.position),
-      { ...getXYPositions(7), z: 2 },
+      { ...getXYPositions(7), z: -4 },
     );
 
     // Spinning can
@@ -95,8 +95,8 @@ export default function Scene({ sentence, flavor }: SkyDiveProps) {
         trigger: ".skydive",
         pin: true,
         start: "top top",
-        end: "+=2000",
-        scrub: 1.5,
+        end: `+=${wordsRef.current.children.length * 550}`,
+        scrub: 1.4,
       },
     });
 
@@ -106,21 +106,21 @@ export default function Scene({ sentence, flavor }: SkyDiveProps) {
         overwrite: "auto",
         duration: 0.1,
       })
-      .to(cloudsRef.current.position, { z: 0, duration: 0.3 }, 0)
+      .to(cloudsRef.current.position, { z: 0, duration: 0.2 }, 0)
       .to(canRef.current.position, {
         x: 0,
         y: 0,
-        duration: 0.3,
-        ease: "back.out(1.7)",
+        duration: 0.5,
+        ease: "back.out(1.3)",
       })
       .to(
         wordsRef.current.children.map((word) => word.position),
         {
           keyframes: [
             { x: 0, y: 0, z: -1 },
-            { ...getXYPositions(-7), z: -7 },
+            { ...getXYPositions(-7), z: -13 },
           ],
-          stagger: 0.3,
+          stagger: 0.5,
         },
         0,
       )
